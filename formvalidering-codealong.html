@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- <!DOCTYPE html> means HTML5 -->
+<html lang="da">
+<head>
+    <!-- metatags give extra information to the browser. The browser reads the head first. Stuff inside the head element is not displayed. -->
+    <meta charset="UTF-8">
+    <!-- initial-scale=1.0 : this makes the page display in the same way on all platforms.
+    We are going to learn more about that in the hovedforløb. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- About <meta http-equiv="X-UA-Compatible" content="IE=edge"> :
+    This is about making IE and Edge happy because they have problems with protocols that are not based on http-equivalent protocols (based on HTTP (hypertext transport protocol) or HTTPS (S for secure-socket layer)). 
+    We are going to learn about that kind of protocoles in the hovedforløb. -->
+    <!-- Search engines come up with their own description if the following tag is not present. 
+    <meta name="description" content="form validerings codealong">
+    -->
+    <!-- metatags are never necessary, but they are good to have! -->
+    <link rel="stylesheet" href="assets/css/codealong.css">
+    <script src="assets/js/codealong.js" defer></script>
+    <title>Formvalidering</title>
+</head>
+<body>
+    <header>
+        <h1>Codealong om formvalidering og modaldialoger</h1>
+    </header>
+    <main>
+        <button id="modalButton">Tilmeld</button>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore odit, incidunt aliquam nemo recusandae delectus ut quis. Inventore obcaecati quasi est non, eaque doloribus consectetur rem officiis, alias similique autem enim hic dolor illum dolorum dicta mollitia totam, voluptatibus ratione nostrum blanditiis fugit! Voluptatibus, ipsam doloribus! Pariatur dolorum in cumque ratione ea nulla vel ipsum esse error numquam, voluptatibus necessitatibus, unde, suscipit aliquid reprehenderit iusto? Minus amet cum culpa ratione tenetur fugiat ab itaque error? Repudiandae voluptatibus earum nostrum odit, fugit possimus adipisci aspernatur dicta sapiente aperiam, ex libero. Esse debitis dolorem delectus, sed sequi autem explicabo vel? Rem libero culpa minima asperiores harum aperiam corrupti eos hic molestias impedit. Eligendi rem minus totam facilis. Ducimus illum enim minus nemo, at reiciendis sint necessitatibus odit et exercitationem quae nostrum tenetur quam quas, quisquam eius quia molestiae vero hic rerum quasi fugiat nulla excepturi cum. Reprehenderit eius ratione voluptas repellat, totam cumque dolore qui porro dolorum odit quia dignissimos inventore quaerat? Illum pariatur expedita, aperiam sapiente accusamus praesentium sint ut totam autem repellendus laborum dolores quibusdam cupiditate, eaque earum molestias modi ab, et assumenda beatae nam dolore itaque tempora. Ipsa animi incidunt veritatis maiores debitis illum. Iste quas tenetur neque maiores, laborum blanditiis in soluta, consequuntur minima optio tempore reprehenderit dolores doloremque eaque? Nemo laborum impedit aut, iusto qui quis vitae esse tempore incidunt voluptas sapiente. Voluptatibus commodi, nulla at, a molestias nihil tempore eaque impedit vitae qui deleniti dolore veritatis numquam animi. Ut alias officiis delectus quia minus id excepturi. Voluptatibus, iste. Harum debitis obcaecati libero excepturi sint, architecto eius. Iste aliquid debitis labore explicabo facere non suscipit placeat commodi asperiores vero atque dolor, sit quos porro harum. Sed porro fugit, dolores consectetur voluptatibus vero accusamus, modi dignissimos et suscipit autem perspiciatis iste ducimus, maiores accusantium dicta voluptatem dolorem. Corrupti.</p>
+    </main>
+    <footer>
+        <p>© Marie-Pierre Lessards kursusnotater fra en "code-along master class" på TechCollege med Bo Nicolaisen, underviser.</p>
+    </footer>
+    <!-- Since HTML code is read from top to bottom, it is best to put the modal dialog at the bottom of the page so that it is rendered last and is positioned on top of the other elements. -->
+    <div id="modal" class="modalBox hidden">
+        <!-- &times; is the multiplication sign. 
+        <button id="kryds">&times;</button>
+        -->
+        <!-- <img id="kryds" src="assets/icons/xmark-solid.svg" alt="Lukkeknap"> 
+         ELLER: -->
+        <svg id="kryds" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path id="svg-color" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+        <!-- JavaScript works on the client's machine, so we are removing action and method right now. 
+        <form action="#" method="post" id="myForm"> 
+        The default action, refresh, is still there. -->
+        <h2>Formvalidering</h2>
+        <form id="myForm">
+            <label for="name">Navn:</label><br>
+            <input type="text" name="name" id="name"><br><br>
+            <label for="email">E-mail:</label><br>
+            <input type="text" name="email" id="email"><br><br>
+            <!-- The value is what is written on the button. The input with the type submit triggers the submission automatically (it has a default action).
+            As a consequence, we are using a button right now. 
+            <input type="submit" value="Send">
+            -->
+            <!-- What follows onclick is a JavaScript function. The stuff between quotation marks is JavaScript, so it has to be written in the same way as one would write in the JavaScript file. -->
+            <!-- Option 1, which worked, but now we are adding a validation:  
+            <button id="submitButton" onclick="SubmitFormCallBack()">Indsend</button> 
+            DO NOT use the attribute onclick when you have an event listener because they compete with each other (onclick is handled by the browser, which has defaults). -->
+        </form>
+        <button id="submitButton">Indsend</button>
+        <p id="errorMessage"></p>
+        <p id="successMessage"></p>
+    </div>
+    
+</body>
+</html>
+

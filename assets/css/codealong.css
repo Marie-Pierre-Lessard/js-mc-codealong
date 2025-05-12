@@ -1,0 +1,62 @@
+
+
+
+/* MODAL (at the end of the CSS file, just like the HTML code for the modal is below the footer) */
+
+.modalBox {
+    position: fixed;
+    /* 0px from the top (it looks like the default reading order is from top to bottom and left to right) */
+    top: 0;
+    /* 0px from the left corner */
+    left: 0;
+
+    /* The following is to make the modal cover the entire page if the parent element is body (100% of the parent element). 
+    Alternatively, one could choose vw/vh, but this would not allow the user to scroll.
+    width: 100vw;
+    height: 100vh;
+    */
+    width: 100%;
+    height: 100%;
+
+    background-color: rgb(126, 126, 126);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#kryds {
+    height: 4rem;
+    background-color: rgb(238, 255, 3);
+    padding: .5rem;
+    border-radius: 50%;
+    /* This changes the shape of the cursor when it is above the X of the close button. */
+    cursor: pointer;
+    /* When you use display: flex; in a parent, the properties that will position the elements instead of the parent are different than elsewhere. 
+    justify-self: right; did not work here! 
+    However, this worked: 
+    align-self: flex-end;
+    */
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* In the exercise at AT, we applied a filter to an SVG file in an img element.
+In order to give a color to a SVG file, it is necessary to copy the code of the SVG file into the HTML document. Applying the styling to the SVG element itself (the container) does not work (see references about fill and stroke attributes of SVG elements). 
+With the following CSS declaration that applies to the path element, it works. However, if the style was applied with inline styling (HTML attributes), it would not work. */
+#svg-color {
+    fill: green;
+    stroke: red;
+    stroke-width: 10px;
+}
+
+#kryds:hover {
+    background-color: brown;
+}
+
+.hidden {
+    display: none;
+}
+
